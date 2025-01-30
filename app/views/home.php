@@ -16,16 +16,16 @@ $base_url = $_ENV['BASE_URL'];
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <link rel="shortcut icon" href="<?php echo $base_url; ?>public/assets/favicon.png">
-    <link rel="apple-touch-icon" href="<?php echo $base_url; ?>public/assets/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="<?php echo $base_url; ?>public/assets/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="<?php echo $base_url; ?>public/assets/apple-touch-icon-114x114.png">
+    <link rel="shortcut icon" href="<?php echo $base_url; ?>/public/assets/favicon.png">
+    <link rel="apple-touch-icon" href="<?php echo $base_url; ?>/public/assets/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="<?php echo $base_url; ?>/public/assets/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="<?php echo $base_url; ?>/public/assets/apple-touch-icon-114x114.png">
     <title>Robert - Portfolio</title>
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&amp;display=swap"
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400i&amp;display=swap" rel="stylesheet">
-    <link href="<?php echo $base_url; ?>public/assets/css/style.css" rel="stylesheet" media="screen">
+    <link href="<?php echo $base_url; ?>/public/assets/css/style.css" rel="stylesheet" media="screen">
 </head>
 
 <body>
@@ -79,7 +79,7 @@ $base_url = $_ENV['BASE_URL'];
         <header class="navbar boxed">
             <div class="navbar-bg"></div>
             <a class="brand" href="#">
-                <img class="brand-img" alt="" src="<?php echo $base_url; ?>public/assets/images/brand.png">
+                <img class="brand-img" alt="" src="<?php echo $base_url; ?>/public/assets/images/brand.png">
                 <div class="brand-info">
                     <div class="brand-name">Robert</div>
                     <div class="brand-text">personal</div>
@@ -115,7 +115,7 @@ $base_url = $_ENV['BASE_URL'];
         <div class="pagepiling">
             <div data-anchor="page1" class="pp-scrollable text-white section section-1">
                 <div class="scroll-wrap">
-                    <div class="section-bg" style="background-image:url(<?php echo $base_url; ?>public/assets/images/bg/main.jpg);"></div>
+                    <div class="section-bg" style="background-image:url(<?php echo $base_url; ?>/public/assets/images/bg/main.jpg);"></div>
                     <div class="scrollable-content">
                         <div class="vertical-centred">
                             <div class="boxed boxed-inner">
@@ -198,7 +198,7 @@ $base_url = $_ENV['BASE_URL'];
             </div>
             <div data-anchor="page3" class="pp-scrollable text-white section section-3">
                 <div class="scroll-wrap">
-                    <div class="section-bg" style="background-image:url(<?php echo $base_url; ?>public/assets/images/bg/resume.jpg);"></div>
+                    <div class="section-bg" style="background-image:url(<?php echo $base_url; ?>/public/assets/images/bg/resume.jpg);"></div>
                     <div class="scrollable-content">
                         <div class="vertical-centred">
                             <div class="boxed boxed-inner">
@@ -294,51 +294,51 @@ $base_url = $_ENV['BASE_URL'];
                                             <h2 class="title-uppercase text-white">Trusted from Clients</h2>
                                             <div class="row row-partners">
                                                 <div class="col-sm-6 col-md-4 col-xl-3 col-partner">
-                                                    <div class="partner-inner"><img alt="" src="<?php echo $base_url; ?>public/assets/images/partners/1.png">
+                                                    <div class="partner-inner"><img alt="" src="<?php echo $base_url; ?>/public/assets/images/partners/1.png">
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6 col-md-4 col-xl-3 col-partner">
-                                                    <div class="partner-inner"><img alt="" src="<?php echo $base_url; ?>public/assets/images/partners/2.png">
+                                                    <div class="partner-inner"><img alt="" src="<?php echo $base_url; ?>/public/assets/images/partners/2.png">
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6 col-md-4 col-xl-3 col-partner">
-                                                    <div class="partner-inner"><img alt="" src="<?php echo $base_url; ?>public/assets/images/partners/3.png">
+                                                    <div class="partner-inner"><img alt="" src="<?php echo $base_url; ?>/public/assets/images/partners/3.png">
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6 col-md-4 col-xl-3 col-partner">
-                                                    <div class="partner-inner"><img alt="" src="<?php echo $base_url; ?>public/assets/images/partners/4.png">
+                                                    <div class="partner-inner"><img alt="" src="<?php echo $base_url; ?>/public/assets/images/partners/4.png">
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6 col-md-4 col-xl-3 col-partner">
-                                                    <div class="partner-inner"><img alt="" src="<?php echo $base_url; ?>public/assets/images/partners/5.png">
+                                                    <div class="partner-inner"><img alt="" src="<?php echo $base_url; ?>/public/assets/images/partners/5.png">
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6 col-md-4 col-xl-3 col-partner">
-                                                    <div class="partner-inner"><img alt="" src="<?php echo $base_url; ?>public/assets/images/partners/6.png">
+                                                    <div class="partner-inner"><img alt="" src="<?php echo $base_url; ?>/public/assets/images/partners/6.png">
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6 col-md-4 col-xl-3 col-partner">
-                                                    <div class="partner-inner"><img alt="" src="<?php echo $base_url; ?>public/assets/images/partners/7.png">
+                                                    <div class="partner-inner"><img alt="" src="<?php echo $base_url; ?>/public/assets/images/partners/7.png">
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6 col-md-4 col-xl-3 col-partner">
-                                                    <div class="partner-inner"><img alt="" src="<?php echo $base_url; ?>public/assets/images/partners/8.png">
+                                                    <div class="partner-inner"><img alt="" src="<?php echo $base_url; ?>/public/assets/images/partners/8.png">
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6 col-md-4 col-xl-3 col-partner">
-                                                    <div class="partner-inner"><img alt="" src="<?php echo $base_url; ?>public/assets/images/partners/9.png">
+                                                    <div class="partner-inner"><img alt="" src="<?php echo $base_url; ?>/public/assets/images/partners/9.png">
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6 col-md-4 col-xl-3 col-partner">
-                                                    <div class="partner-inner"><img alt="" src="<?php echo $base_url; ?>public/assets/images/partners/10.png">
+                                                    <div class="partner-inner"><img alt="" src="<?php echo $base_url; ?>/public/assets/images/partners/10.png">
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6 col-md-4 col-xl-3 col-partner">
-                                                    <div class="partner-inner"><img alt="" src="<?php echo $base_url; ?>public/assets/images/partners/11.png">
+                                                    <div class="partner-inner"><img alt="" src="<?php echo $base_url; ?>/public/assets/images/partners/11.png">
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6 col-md-4 col-xl-3 col-partner">
-                                                    <div class="partner-inner"><img alt="" src="<?php echo $base_url; ?>public/assets/images/partners/12.png">
+                                                    <div class="partner-inner"><img alt="" src="<?php echo $base_url; ?>/public/assets/images/partners/12.png">
                                                     </div>
                                                 </div>
                                             </div>
@@ -353,11 +353,11 @@ $base_url = $_ENV['BASE_URL'];
             <div data-anchor="page5" class="pp-scrollable text-white section section-5">
                 <div class="scroll-wrap">
                     <div class="bg-changer">
-                        <div class="section-bg" style="background-image:url(<?php echo $base_url; ?>public/assets/images/bg/project1.jpg);"></div>
-                        <div class="section-bg" style="background-image:url(<?php echo $base_url; ?>public/assets/images/bg/project2.jpg);"></div>
-                        <div class="section-bg" style="background-image:url(<?php echo $base_url; ?>public/assets/images/bg/project3.jpg);"></div>
-                        <div class="section-bg" style="background-image:url(<?php echo $base_url; ?>public/assets/images/bg/project4.jpg);"></div>
-                        <div class="section-bg" style="background-image:url(<?php echo $base_url; ?>public/assets/images/bg/project5.jpg);"></div>
+                        <div class="section-bg" style="background-image:url(<?php echo $base_url; ?>/public/assets/images/bg/project1.jpg);"></div>
+                        <div class="section-bg" style="background-image:url(<?php echo $base_url; ?>/public/assets/images/bg/project2.jpg);"></div>
+                        <div class="section-bg" style="background-image:url(<?php echo $base_url; ?>/public/assets/images/bg/project3.jpg);"></div>
+                        <div class="section-bg" style="background-image:url(<?php echo $base_url; ?>/public/assets/images/bg/project4.jpg);"></div>
+                        <div class="section-bg" style="background-image:url(<?php echo $base_url; ?>/public/assets/images/bg/project5.jpg);"></div>
                     </div>
                     <div class="scrollable-content">
                         <div class="vertical-centred">
@@ -427,7 +427,7 @@ $base_url = $_ENV['BASE_URL'];
             </div>
             <div data-anchor="page6" class="pp-scrollable text-white section section-6">
                 <div class="scroll-wrap">
-                    <div class="section-bg" style="background-image:url(<?php echo $base_url; ?>public/assets/images/bg/reviews.jpg);"></div>
+                    <div class="section-bg" style="background-image:url(<?php echo $base_url; ?>/public/assets/images/bg/reviews.jpg);"></div>
                     <div class="scrollable-content">
                         <div class="vertical-centred">
                             <div class="boxed boxed-inner">
@@ -489,7 +489,7 @@ $base_url = $_ENV['BASE_URL'];
             </div>
             <div data-anchor="page7" class="pp-scrollable section section-7">
                 <div class="scroll-wrap">
-                    <div class="section-bg" style="background-image:url(<?php echo $base_url; ?>public/assets/images/bg/contact.jpg);"></div>
+                    <div class="section-bg" style="background-image:url(<?php echo $base_url; ?>/public/assets/images/bg/contact.jpg);"></div>
                     <div class="scrollable-content">
                         <div class="vertical-centred">
                             <div class="boxed boxed-inner">
@@ -554,15 +554,15 @@ $base_url = $_ENV['BASE_URL'];
             </div>
         </div>
 
-        <script src="<?php echo $base_url; ?>public/assets/js/jquery.min.js"></script>
-        <script src="<?php echo $base_url; ?>public/assets/js/wow.min.js"></script>
-        <script src="<?php echo $base_url; ?>public/assets/js/smoothscroll.js"></script>
-        <script src="<?php echo $base_url; ?>public/assets/js/animsition.js"></script>
-        <script src="<?php echo $base_url; ?>public/assets/js/jquery.validate.min.js"></script>
-        <script src="<?php echo $base_url; ?>public/assets/js/jquery.magnific-popup.min.js"></script>
-        <script src="<?php echo $base_url; ?>public/assets/js/owl.carousel.min.js"></script>
-        <script src="<?php echo $base_url; ?>public/assets/js/jquery.pagepiling.min.js"></script>
+        <script src="<?php echo $base_url; ?>/public/assets/js/jquery.min.js"></script>
+        <script src="<?php echo $base_url; ?>/public/assets/js/wow.min.js"></script>
+        <script src="<?php echo $base_url; ?>/public/assets/js/smoothscroll.js"></script>
+        <script src="<?php echo $base_url; ?>/public/assets/js/animsition.js"></script>
+        <script src="<?php echo $base_url; ?>/public/assets/js/jquery.validate.min.js"></script>
+        <script src="<?php echo $base_url; ?>/public/assets/js/jquery.magnific-popup.min.js"></script>
+        <script src="<?php echo $base_url; ?>/public/assets/js/owl.carousel.min.js"></script>
+        <script src="<?php echo $base_url; ?>/public/assets/js/jquery.pagepiling.min.js"></script>
 
-        <script src="<?php echo $base_url; ?>public/assets/js/scripts.js"></script>
+        <script src="<?php echo $base_url; ?>/public/assets/js/scripts.js"></script>
     </div>
 </body>
