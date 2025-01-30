@@ -1,0 +1,17 @@
+{
+    "name": "rizanoorfauzan/mollanative",
+    "autoload": {
+        "psr-4": {
+            "Rizanoorfauzan\\Mollanative\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Rizanoor",
+            "email": "rizanoorfauzan123@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
+}
