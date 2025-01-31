@@ -87,6 +87,12 @@ if (!isset($_SESSION['user_name'])) {
                                 <p>Projects</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="?account=true" class="nav-link <?php echo $activePage === 'account' ? 'active' : ''; ?>">
+                                <i class="bi bi-gear"></i>
+                                <p>Account Setting</p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -105,6 +111,8 @@ if (!isset($_SESSION['user_name'])) {
                                     echo "Resume";
                                 } elseif (isset($_GET['project'])) {
                                     echo "Projects";
+                                } elseif (isset($_GET['account'])) {
+                                    echo "Account Settings";
                                 } else {
                                     echo "Home";
                                 }
@@ -124,6 +132,8 @@ if (!isset($_SESSION['user_name'])) {
                             include('resume.php');
                         } elseif (isset($_GET['project'])) {
                             include('project.php');
+                        } elseif (isset($_GET['account'])) {
+                            include('account.php');
                         } else {
                         ?>
                             <div class="col-lg-12">
