@@ -18,114 +18,172 @@ if (!isset($_SESSION['user_name'])) {
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Admin | Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="title" content="AdminLTE | Dashboard v2" />
+    <meta name="author" content="ColorlibHQ" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="<?php echo $base_url; ?>/admin/assets/css/adminlte.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>/admin/assets/css/adminlte.css" />
 
-    <link rel="shortcut icon" href="<?php echo $base_url; ?>/public/assets/favicon.png">
-    <link rel="apple-touch-icon" href="<?php echo $base_url; ?>/public/assets/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="<?php echo $base_url; ?>/public/assets/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="<?php echo $base_url; ?>/public/assets/apple-touch-icon-114x114.png">
-    <title>Admin | Robert - Portfolio</title>
-
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&amp;display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400i&amp;display=swap" rel="stylesheet">
-    <link href="<?php echo $base_url; ?>/public/assets/css/style.css" rel="stylesheet" media="screen">
+    <style>
+        body {
+            font-family: "Poppins", serif;
+        }
+    </style>
 </head>
 
-<body>
-    <div class="animsition">
-        <div class="loader">
-            <div class="spinner">
-                <div class="double-bounce1"></div>
-                <div class="double-bounce2"></div>
+<body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+    <div class="app-wrapper">
+        <nav class="app-header navbar navbar-expand bg-body">
+            <div class="container-fluid">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo $base_url; ?>/admin/index.php?logout=true">
+                            <i class="bi bi-box-arrow-right"></i> Logout
+                        </a>
+                    </li>
+                </ul>
             </div>
-        </div>
+        </nav>
+        <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
+            <div class="sidebar-brand">
+                <a href="./index.html" class="brand-link">
+                    <span class="brand-text fw-light">Admin</span>
+                </a>
+            </div>
+            <div class="sidebar-wrapper">
+                <?php
+                // Tentukan halaman aktif berdasarkan parameter URL
+                $activePage = isset($_GET) && count($_GET) > 0 ? key($_GET) : 'home';
+                ?>
+                <nav class="mt-2">
+                    <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview">
+                        <li class="nav-item">
+                            <a href="../admin/" class="nav-link <?php echo $activePage === 'home' ? 'active' : ''; ?>">
+                                <i class="bi bi-house"></i>
+                                <p>Home</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="?about=true" class="nav-link <?php echo $activePage === 'about' ? 'active' : ''; ?>">
+                                <i class="bi bi-file-person"></i>
+                                <p>About</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="?resume=true" class="nav-link <?php echo $activePage === 'resume' ? 'active' : ''; ?>">
+                                <i class="bi bi-file-earmark"></i>
+                                <p>Resume</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="?project=true" class="nav-link <?php echo $activePage === 'project' ? 'active' : ''; ?>">
+                                <i class="bi bi-tools"></i>
+                                <p>Projects</p>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
 
-        <div class="click-capture"></div>
-
-        <div class="menu">
-            <span class="close-menu icon-cross2 right-boxed"></span>
-            <ul class="menu-list right-boxed">
-                <li data-menuanchor="page1">
-                    <a href="#page1">Home</a>
-                </li>
-                <li data-menuanchor="page2">
-                    <a href="#page2">About</a>
-                </li>
-                <li data-menuanchor="page3">
-                    <a href="#page3">Resume</a>
-                </li>
-                <li data-menuanchor="page4">
-                    <a href="#page4">Clients</a>
-                </li>
-                <li data-menuanchor="page5">
-                    <a href="#page5">Projects</a>
-                </li>
-                <li data-menuanchor="page6">
-                    <a href="#page6">Testimonials</a>
-                </li>
-                <li data-menuanchor="page7">
-                    <a href="#page7">Contact</a>
-                </li>
-                <li data-menuanchor="logout">
-                    <a href="<?php echo $base_url; ?>/admin/index.php?logout=true">Logout</a>
-                </li>
-            </ul>
-            <div class="menu-footer right-boxed">
-                <div class="social-list">
-                    <a href="#" class="icon ion-social-twitter"></a>
-                    <a href="#" class="icon ion-social-facebook"></a>
-                    <a href="#" class="icon ion-social-googleplus"></a>
-                    <a href="#" class="icon ion-social-linkedin"></a>
-                    <a href="#" class="icon ion-social-dribbble-outline"></a>
+        <main class="app-main">
+            <div class="app-content-header">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h3 class="mb-0">
+                                <?php
+                                if (isset($_GET['about'])) {
+                                    echo "About";
+                                } elseif (isset($_GET['resume'])) {
+                                    echo "Resume";
+                                } elseif (isset($_GET['project'])) {
+                                    echo "Projects";
+                                } else {
+                                    echo "Home";
+                                }
+                                ?>
+                            </h3>
+                        </div>
+                    </div>
                 </div>
-                <div class="copy"><a href="templateshub.net">Templates Hub</a></div>
             </div>
-        </div>
-
-        <header class="navbar boxed">
-            <div class="navbar-bg"></div>
-            <a class="brand" href="#">
-                <img class="brand-img" alt="" src="<?php echo $base_url; ?>/public/assets/images/brand.png">
-                <div class="brand-info">
-                    <div class="brand-name">Robert</div>
-                    <div class="brand-text">personal</div>
+            <div class="app-content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <?php
+                        if (isset($_GET['about'])) {
+                            include('about.php');
+                        } elseif (isset($_GET['resume'])) {
+                            include('resume.php');
+                        } elseif (isset($_GET['project'])) {
+                            include('project.php');
+                        } else {
+                        ?>
+                            <div class="col-lg-12">
+                                <div class="card card-primary card-outline mb-4">
+                                    <form class="needs-validation" novalidate>
+                                        <div class="card-body">
+                                            <div class="row g-3">
+                                                <div class="col-md-12">
+                                                    <label for="hero_photo" class="form-label">Hero Photo</label>
+                                                    <input type="file" name="hero_photo" class="form-control">
+                                                    <small>Photo (Minimum 1920 X 1280, Maxsize 2mb)</small>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="name" class="form-label">Name</label>
+                                                    <input type="text" class="form-control" name="name" placeholder="Enter Full  Name">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="instagram" class="form-label">Instagram</label>
+                                                    <input type="text" class="form-control" name="instagram" placeholder="Enter Instagram">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="facebook" class="form-label">Facebook</label>
+                                                    <input type="text" class="form-control" name="facebook" placeholder="Enter Facebook">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="linkedin" class="form-label">Linkedin</label>
+                                                    <input type="text" class="form-control" name="linkedin" placeholder="Enter Linkedin">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="github" class="form-label">Github</label>
+                                                    <input type="text" class="form-control" name="github" placeholder="Enter Github">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="phone" class="form-label">Phone</label>
+                                                    <input type="tel" class="form-control" name="Phone" placeholder="Enter Phone">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="address" class="form-label">Address</label>
+                                                    <textarea name="address" id="address" class="form-control"></textarea>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="email" class="form-label">email</label>
+                                                    <input type="email" class="form-control" name="email" placeholder="Enter Email">
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-primary mt-3" type="submit">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        <?php
+                        }
+                        ?>
+                    </div>
                 </div>
-            </a>
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse"
-                aria-expanded="false">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </header>
-        <div class="copy-bottom white boxed">© Robert <?= date('Y'); ?>.</div>
-        <div class="social-list social-list-bottom boxed">
-            <a href="#" class="icon ion-social-twitter"></a>
-            <a href="#" class="icon ion-social-facebook"></a>
-            <a href="#" class="icon ion-social-googleplus"></a>
-            <a href="#" class="icon ion-social-linkedin"></a>
-            <a href="#" class="icon ion-social-dribbble-outline"></a>
-        </div>
-
-        <div data-anchor="page1" class="pp-scrollable text-white section section-1">
-            <div class="scroll-wrap">
-                <div class="section-bg" style="background-image:url(<?php echo $base_url; ?>/public/assets/banner.jpg);"></div>
             </div>
-        </div>
+        </main>
     </div>
 
-    <script src="<?php echo $base_url; ?>/public/assets/js/jquery.min.js"></script>
-    <script src="<?php echo $base_url; ?>/public/assets/js/wow.min.js"></script>
-    <script src="<?php echo $base_url; ?>/public/assets/js/smoothscroll.js"></script>
-    <script src="<?php echo $base_url; ?>/public/assets/js/animsition.js"></script>
-    <script src="<?php echo $base_url; ?>/public/assets/js/jquery.validate.min.js"></script>
-    <script src="<?php echo $base_url; ?>/public/assets/js/jquery.magnific-popup.min.js"></script>
-    <script src="<?php echo $base_url; ?>/public/assets/js/owl.carousel.min.js"></script>
-    <script src="<?php echo $base_url; ?>/public/assets/js/jquery.pagepiling.min.js"></script>
-
-    <script src="<?php echo $base_url; ?>/public/assets/js/scripts.js"></script>
+    <script src="<?php echo $base_url; ?>/admin/assets/js/adminlte.js"></script>
 </body>
+
+</html>

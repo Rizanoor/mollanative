@@ -7,23 +7,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
 
     if (empty($email) || empty($password)) {
-        header("Location: ../../login.php?error=empty_fields");
+        $_SESSION['message'] = 'Email dan password tidak boleh kosong.';
+        $_SESSION['message_type'] = 'error';
+        header("Location: ../");
         exit();
     }
 
     $userModel = new UserModel();
     $user = $userModel->login($email, $password);
 
+    // Jika login berhasil
     if ($user) {
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['user_name'] = $user['username'];
-        header("Location:../");
+        $_SESSION['message'] = 'Login berhasil! Selamat datang, ' . $user['username'] . '.';
+        $_SESSION['message_type'] = 'success';
+        header("Location: ../");
         exit();
     } else {
-        header('location:login/');
+        // Jika login gagal
+        $_SESSION['message'] = 'Login gagal. Pastikan email dan password benar.';
+        $_SESSION['message_type'] = 'error';
+        header("Location: ../");
         exit();
     }
-
-    var_dump($_SESSION);
-    exit;
 }
+

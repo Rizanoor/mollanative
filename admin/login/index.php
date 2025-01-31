@@ -1,12 +1,24 @@
 <?php
 session_start();
 
-if(isset($_SESSION['user_name'])){
+if (isset($_SESSION['user_name'])) {
     header('location:../');
 }
 
 $base_url = "http://localhost:8888/mollanative";
 
+// Ambil pesan dari session jika ada
+$message = '';
+$message_type = '';
+
+if (isset($_SESSION['message'])) {
+    $message = $_SESSION['message'];
+    $message_type = $_SESSION['message_type'];
+
+    // Hapus pesan setelah ditampilkan
+    unset($_SESSION['message']);
+    unset($_SESSION['message_type']);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,51 +62,77 @@ $base_url = "http://localhost:8888/mollanative";
 
         .form-signin {
             width: 100%;
-            max-width: 330px;
-            padding: 15px;
+            max-width: 380px;
+            padding: 20px;
             margin: 0 auto;
+            background: #fff;
+            border-radius: 10px;
         }
 
-        .form-signin .checkbox {
-            font-weight: 400;
+        .form-signin input[type="email"],
+        .form-signin input[type="password"] {
+            margin-bottom: 15px;
         }
 
-        .form-signin .form-control {
-            position: relative;
-            box-sizing: border-box;
-            height: auto;
+        .custom-alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .custom-alert.success {
+            background-color: #e7f9ed;
+            border: 1px solid #b7e2c7;
+            color: #2b6d3b;
+        }
+
+        .custom-alert.error {
+            background-color: #fdecea;
+            border: 1px solid #f5b4b0;
+            color: #b43731;
+        }
+
+        .custom-alert i {
+            font-size: 18px;
+            margin-right: 10px;
+        }
+
+        .custom-alert.success i {
+            color: #2b6d3b;
+        }
+
+        .custom-alert.error i {
+            color: #b43731;
+        }
+
+        .form-signin button {
             padding: 10px;
             font-size: 16px;
-        }
-
-        .form-signin .form-control:focus {
-            z-index: 2;
-        }
-
-        .form-signin input[type="email"] {
-            margin-bottom: -1px;
-            border-bottom-right-radius: 0;
-            border-bottom-left-radius: 0;
-        }
-
-        .form-signin input[type="password"] {
-            margin-bottom: 10px;
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
+            border-radius: 5px;
         }
     </style>
 </head>
 
-<body class="text-center">
-    <form class="form-signin" action="<?php echo $base_url; ?>/admin/controllers/AuthController.php" method="POST">
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        <p class="mt-5 mb-3 text-muted">&copy; <?= date('Y'); ?></p>
-    </form>
+<body>
+    <div class="form-signin">
+        <?php if (!empty($message)) : ?>
+            <div class="custom-alert <?php echo $message_type === 'success' ? 'success' : 'error'; ?>">
+                <i class="bi <?php echo $message_type === 'success' ? 'bi-check-circle-fill' : 'bi-x-circle-fill'; ?>"></i>
+                <span><?php echo $message; ?></span>
+            </div>
+        <?php endif; ?>
+
+        <form action="<?php echo $base_url; ?>/admin/controllers/AuthController.php" method="POST">
+            <label for="inputEmail" class="sr-only">Email address</label>
+            <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" autofocus>
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password">
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            <p class="mt-2 mb-3 text-muted text-center">&copy; <?= date('Y'); ?></p>
+        </form>
+    </div>
 </body>
 
 </html>
