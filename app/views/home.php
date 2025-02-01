@@ -134,7 +134,7 @@ $projects = $projectController->getProjects();
         <div class="pagepiling">
             <div data-anchor="page1" class="pp-scrollable text-white section section-1">
                 <div class="scroll-wrap">
-                    <div class="section-bg" style="background-image:url(<?php echo $base_url; ?>/public/assets/images/bg/main.jpg);"></div>
+                    <div class="section-bg" style="background-image:url(<?php echo $base_url; ?>/admin/uploads/<?= $profile['hero_photo']; ?>);"></div>
                     <div class="scrollable-content">
                         <div class="vertical-centred">
                             <div class="boxed boxed-inner">
@@ -277,11 +277,9 @@ $projects = $projectController->getProjects();
             <div data-anchor="page5" class="pp-scrollable text-white section section-5">
                 <div class="scroll-wrap">
                     <div class="bg-changer">
-                        <div class="section-bg" style="background-image:url(<?php echo $base_url; ?>/public/assets/images/bg/project1.jpg);"></div>
-                        <div class="section-bg" style="background-image:url(<?php echo $base_url; ?>/public/assets/images/bg/project2.jpg);"></div>
-                        <div class="section-bg" style="background-image:url(<?php echo $base_url; ?>/public/assets/images/bg/project3.jpg);"></div>
-                        <div class="section-bg" style="background-image:url(<?php echo $base_url; ?>/public/assets/images/bg/project4.jpg);"></div>
-                        <div class="section-bg" style="background-image:url(<?php echo $base_url; ?>/public/assets/images/bg/project5.jpg);"></div>
+                        <?php foreach ($projects as $project): ?>
+                            <div class="section-bg" style="background-image:url(<?php echo $base_url; ?>/admin/<?= $project['project_photo']; ?>);"></div>
+                        <?php endforeach; ?>
                     </div>
                     <div class="scrollable-content">
                         <div class="vertical-centred">
