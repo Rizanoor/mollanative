@@ -1,5 +1,6 @@
 <?php
-require_once './models/SkillModel.php';
+require_once __DIR__ . '/../models/SkillModel.php';
+
 
 class SkillController
 {
