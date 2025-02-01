@@ -1,68 +1,96 @@
-Panduan Instalasi Website Portfolio dengan PHP Native dan PostgreSQL
-Ini adalah panduan langkah demi langkah untuk menginstal dan menjalankan website portfolio sederhana menggunakan PHP native dan PostgreSQL sebagai database.
+# Website Portfolio dengan PHP Native dan PostgreSQL
 
-Persyaratan
-Pastikan sistem Anda memenuhi persyaratan berikut sebelum memulai instalasi:
+![GitHub](https://img.shields.io/badge/PHP-7.0%2B-blue) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-9.0%2B-blue) ![Status](https://img.shields.io/badge/Status-Active-success)
 
-PHP versi 7.0 atau yang lebih baru
-PostgreSQL versi 9.0 atau yang lebih baru
-Web server seperti Apache atau Nginx
-Composer untuk mengelola dependensi PHP
-Langkah 1: Clone Repositori
-Buka terminal atau command prompt.
+Website portfolio sederhana menggunakan PHP native dan PostgreSQL sebagai database.
 
-Clone repositori ini ke direktori web server Anda:
+## 🚀 Fitur
+- CRUD (Create, Read, Update, Delete) untuk proyek portfolio
+- Desain responsif dan ringan
+- Keamanan dasar terhadap SQL Injection
+- Pengelolaan data dengan PostgreSQL
 
-bash
-Salin
-Edit
+---
+
+## 📌 Persyaratan
+
+Pastikan sistem Anda memiliki:
+- PHP **7.0 atau lebih baru**
+- PostgreSQL **9.0 atau lebih baru**
+- Web server **Apache/Nginx**
+- Composer (opsional untuk mengelola dependensi)
+
+---
+
+## 📥 Instalasi
+
+### 1️⃣ Clone Repository
+```bash
 git clone <link-repositori> portfolio
-Masuk ke direktori portfolio:
-
-bash
-Salin
-Edit
 cd portfolio
-Langkah 2: Konfigurasi Database
-Buat database baru di PostgreSQL:
+```
 
-sql
-Salin
-Edit
-CREATE DATABASE portfolio_db;
-Import struktur tabel dari file portfolio.sql ke database portfolio_db:
+### 2️⃣ Konfigurasi Database
+1. **Buat database di PostgreSQL:**
+   ```sql
+   CREATE DATABASE portfolio_db;
+   ```
+2. **Import struktur tabel:**
+   ```bash
+   psql -U username -d portfolio_db -a -f portfolio.sql
+   ```
+3. **Sesuaikan koneksi database di `config.php`:**
+   ```php
+   <?php
+   define('DB_HOST', 'localhost');
+   define('DB_NAME', 'portfolio_db');
+   define('DB_USER', 'username');
+   define('DB_PASS', 'password');
+   ```
 
-bash
-Salin
-Edit
-psql -U username -d portfolio_db -a -f portfolio.sql
-Ubah konfigurasi database di file config.php:
-
-php
-Salin
-Edit
-<?php
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'portfolio_db');
-define('DB_USER', 'username');
-define('DB_PASS', 'password');
-Ganti username dan password sesuai dengan pengaturan PostgreSQL Anda.
-
-Langkah 3: Install Dependensi PHP
-Instal dependensi PHP menggunakan Composer:
-
-bash
-Salin
-Edit
+### 3️⃣ Install Dependensi
+Jika proyek menggunakan Composer:
+```bash
 composer install
-Langkah 4: Jalankan Web Server
-Pastikan web server (Apache, Nginx, dll.) sudah berjalan.
-Buka browser dan akses http://localhost/portfolio (sesuaikan dengan konfigurasi web server Anda jika diperlukan).
-Kontribusi
-Jika Anda menemukan masalah atau ingin berkontribusi pada proyek ini, silakan buat pull request atau laporkan masalah di link-repositori/issues.
+```
 
-Lisensi
-Proyek ini dilisensikan di bawah lisensi MIT - lihat file LICENSE untuk informasi lebih lanjut.
+### 4️⃣ Jalankan Web Server
+- Gunakan PHP built-in server:
+  ```bash
+  php -S localhost:8000
+  ```
+- Atau akses melalui web server (Apache/Nginx) pada `http://localhost/portfolio`
 
-Template
+---
+
+## 📂 Struktur Folder
+```
+portfolio/
+├── assets/           # CSS, JS, dan gambar
+├── includes/         # File konfigurasi & koneksi database
+├── pages/            # Halaman utama website
+├── index.php         # Entry point utama
+├── config.php        # Konfigurasi database
+└── portfolio.sql     # Struktur database PostgreSQL
+```
+
+---
+
+## 🤝 Kontribusi
+Jika ingin berkontribusi, silakan buat *pull request* atau laporkan masalah di [Issues](link-repositori/issues).
+
+---
+
+## 📜 Lisensi
+Proyek ini dilisensikan di bawah lisensi **MIT**. Lihat file [LICENSE](LICENSE) untuk informasi lebih lanjut.
+
+---
+
+## 📜 Template
 Proyek ini menggunakan template dari https://www.templateshub.net/
+
+---
+
+🚀 **Selamat Mencoba!** 🎉
+
+
