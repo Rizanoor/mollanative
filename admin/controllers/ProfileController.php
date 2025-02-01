@@ -74,14 +74,6 @@ class ProfileController
             exit();
         }
 
-        // Periksa jika file sudah ada
-        if (file_exists($targetFile)) {
-            $_SESSION['message'] = "File sudah ada!";
-            $_SESSION['message_type'] = "danger";
-            header("Location: ../");
-            exit();
-        }
-
         // Upload file
         if (move_uploaded_file($file['tmp_name'], $targetFile)) {
             return basename($file['name']);
