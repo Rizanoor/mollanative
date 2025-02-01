@@ -59,8 +59,9 @@ class ProfileController
         $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
 
         // Validasi ekstensi file
-        if (!getimagesize($file['tmp_name']) || $imageFileType != 'jpg') {
-            $_SESSION['message'] = "Ekstensi file harus jpg!";
+        $validExtensions = ['jpg', 'jpeg', 'png'];
+        if (!getimagesize($file['tmp_name']) || !in_array($imageFileType, $validExtensions)) {
+            $_SESSION['message'] = "Ekstensi file harus jpg, jpeg, atau png!";
             $_SESSION['message_type'] = "danger";
             header("Location: ../");
             exit();
