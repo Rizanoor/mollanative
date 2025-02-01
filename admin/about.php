@@ -38,17 +38,17 @@ $message_type = $_SESSION['message_type'] ?? '';
 
     <form method="POST">
         <div class="row mb-3">
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <label for="inputSkill" class="form-label">Skill Name</label>
                 <input type="text" class="form-control" id="inputSkill" name="inputSkill" placeholder="Enter skill name" required>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <label for="inputExperience" class="form-label">Skill Experience (%)</label>
-                <input type="number" class="form-control" id="inputExperience" name="inputExperience" placeholder="Enter skill experience" min="0" max="100" required>
+                <input type="number" class="form-control" id="inputExperience" name="inputExperience" placeholder="Enter skill experience (0-100)" min="0" max="100" required>
             </div>
 
-            <div class="col-md-4 d-flex align-items-end">
+            <div class="col-md-2 d-flex align-items-end">
                 <button type="submit" class="btn btn-primary w-100">Submit</button>
             </div>
         </div>
