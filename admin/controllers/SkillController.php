@@ -23,8 +23,13 @@ class SkillController
 
     private function handlePostRequest()
     {
-        $skillName = $_POST['inputSkill'];
-        $experience = $_POST['inputExperience'];
+        $skillName = $_POST['inputSkill'] ?? null;
+        $experience = $_POST['inputExperience'] ?? null;
+
+        if (empty($skillName) || empty($experience)) {
+            header("Location: ../admin/index.php?about=true");
+            exit;
+        }
 
         $this->skillModel->addSkill($skillName, $experience);
 
