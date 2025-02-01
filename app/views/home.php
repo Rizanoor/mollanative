@@ -1,10 +1,29 @@
 <?php
 require __DIR__ . '../../../vendor/autoload.php';
+require_once './admin/controllers/ProfileController.php';
+require_once './admin/controllers/AboutController.php';
+require_once './admin/controllers/SkillController.php';
+require_once './admin/controllers/ResumeController.php';
+require_once './admin/controllers/ProjectController.php';
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../../');
 $dotenv->load();
 
 $base_url = $_ENV['BASE_URL'];
+
+$profileController = new ProfileController();
+$aboutController = new AboutController();
+$skillController = new SkillController();
+$resumeController = new ResumeController();
+$projectController = new ProjectController();
+
+$id = 1;
+$profile = $profileController->getProfile($id);
+$about = $aboutController->getAboutData();
+$skills = $skillController->getSkills();
+$resumes = $resumeController->getResumes();
+$projects = $projectController->getProjects();
+
 
 ?>
 <!DOCTYPE html>
@@ -20,7 +39,7 @@ $base_url = $_ENV['BASE_URL'];
     <link rel="apple-touch-icon" href="<?php echo $base_url; ?>/public/assets/apple-touch-icon.png">
     <link rel="apple-touch-icon" sizes="72x72" href="<?php echo $base_url; ?>/public/assets/apple-touch-icon-72x72.png">
     <link rel="apple-touch-icon" sizes="114x114" href="<?php echo $base_url; ?>/public/assets/apple-touch-icon-114x114.png">
-    <title>Robert - Portfolio</title>
+    <title><?= $profile['name'] ?> - Portfolio</title>
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&amp;display=swap"
         rel="stylesheet">
@@ -72,7 +91,7 @@ $base_url = $_ENV['BASE_URL'];
                     <a href="#" class="icon ion-social-linkedin"></a>
                     <a href="#" class="icon ion-social-dribbble-outline"></a>
                 </div>
-                <div class="copy"><a href="templateshub.net">Templates Hub</a></div>
+                <!-- <div class="copy"><a href="templateshub.net">Templates Hub</a></div> -->
             </div>
         </div>
 
@@ -81,7 +100,7 @@ $base_url = $_ENV['BASE_URL'];
             <a class="brand" href="#">
                 <img class="brand-img" alt="" src="<?php echo $base_url; ?>/public/assets/images/brand.png">
                 <div class="brand-info">
-                    <div class="brand-name">Robert</div>
+                    <div class="brand-name"><?= $profile['name'] ?></div>
                     <div class="brand-text">personal</div>
                 </div>
             </a>
@@ -93,17 +112,17 @@ $base_url = $_ENV['BASE_URL'];
             </button>
             <div class="contacts d-none d-md-block">
                 <div class="contact-item">
-                    +96 56-85-1379
+                    +62 8785748232
                 </div>
                 <div class="contact-item spacer">
                     /
                 </div>
                 <div class="contact-item">
-                    <a href=""><span>[email&#160;protected]</span></a>
+                    <a href=""><span><?= $profile['email'] ?></span></a>
                 </div>
             </div>
         </header>
-        <div class="copy-bottom white boxed">© Robert 2019.</div>
+        <div class="copy-bottom white boxed">© <?= $profile['name'] ?> <?= date('Y') ?>.</div>
         <div class="social-list social-list-bottom boxed">
             <a href="#" class="icon ion-social-twitter"></a>
             <a href="#" class="icon ion-social-facebook"></a>
@@ -125,9 +144,9 @@ $base_url = $_ENV['BASE_URL'];
                                         <div class="intro">
                                             <div class="row">
                                                 <div class="col-md-8 col-lg-6">
-                                                    <p class="subtitle-top">Welcome To<br>Robert Design Studio</p>
+                                                    <p class="subtitle-top">Welcome To<br><?= $profile['name'] ?> Website Studio</p>
                                                     <h1 class="display-2 text-white"><span
-                                                            class="text-primary">Hello</span> I am<br> Robert.</h1>
+                                                            class="text-primary">Hello</span> I am<br> <?= $profile['name'] ?>.</h1>
                                                     <a href="https://www.youtube.com/watch?v=0O2aH4XLbto"
                                                         class="popup-youtube icon ion-ios-play"></a>
                                                 </div>
@@ -153,7 +172,7 @@ $base_url = $_ENV['BASE_URL'];
                                                 <div class="col-xl-7">
                                                     <div class="experience-box pb-5">
                                                         <div class="experience-content">
-                                                            <div class="experience-number text-texture">4</div><br
+                                                            <div class="experience-number text-texture">2</div><br
                                                                 class="d-block d-sm-none">
                                                             <div class="experience-info">Years<br>Experience<br>Working
                                                             </div>
@@ -163,27 +182,28 @@ $base_url = $_ENV['BASE_URL'];
                                                 <div class="col-xl-5">
                                                     <h2 class="title-uppercase"> <span class="text-primary">the
                                                             best</span> Websites around</h2>
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                                    Accusantium dicta sit pariatur odio unde deleniti eveniet magni cum,
-                                                    ad iure, vel nisi minima vero voluptates.
+                                                    <?= $about['description'] ?>
                                                     <div class="progress-bars">
-                                                        <div class="clearfix">
-                                                            <div class="number float-left">Development</div>
-                                                            <div class="number float-right">80%</div>
-                                                        </div>
-                                                        <div class="progress">
-                                                            <div class="progress-bar" role="progressbar"
-                                                                style="width: 80%" aria-valuenow="0" aria-valuemin="0"
-                                                                aria-valuemax="100"></div>
-                                                        </div>
-                                                        <div class="clearfix">
-                                                            <div class="number float-left">WordPress</div>
-                                                            <div class="number float-right">70%</div>
-                                                        </div>
-                                                        <div class="progress">
-                                                            <div class="progress-bar" role="progressbar"
-                                                                style="width: 70%" aria-valuenow="25" aria-valuemin="0"
-                                                                aria-valuemax="100"></div>
+                                                        <div class="row">
+                                                            <?php foreach ($skills as $index => $skill): ?>
+                                                                <div class="col-md-6">
+                                                                    <div class="clearfix">
+                                                                        <div class="number float-left"><?= htmlspecialchars($skill['skill_name']) ?></div>
+                                                                        <div class="number float-right"><?= htmlspecialchars($skill['experience']) ?>%</div>
+                                                                    </div>
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar" role="progressbar"
+                                                                            style="width: <?= htmlspecialchars($skill['experience']) ?>%"
+                                                                            aria-valuenow="<?= htmlspecialchars($skill['experience']) ?>"
+                                                                            aria-valuemin="0" aria-valuemax="100">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <?php
+                                                                if (($index + 1) % 2 == 0) echo '</div><div class="row">';
+                                                                ?>
+                                                            <?php endforeach; ?>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -212,30 +232,16 @@ $base_url = $_ENV['BASE_URL'];
                                                         <h4 class="title-uppercase">Education</h4>
                                                         <div class="resume-content">
                                                             <div class="resume-inner">
-                                                                <div class="resume-row">
-                                                                    <h6 class="resume-type">Specialization course</h6>
-                                                                    <p class="resume-study">University of studies,
-                                                                        Poland, Cracow</p>
-                                                                    <p class="resume-date text-primary">Jan 2004 - Dec
-                                                                        2006</p>
-                                                                    <p class="resume-text">Lorem ipsum dolor sit amet,
-                                                                        consectetur adipisicing elit. Minus nobis animi
-                                                                        assumenda sint recusandae! Dolor placeat debitis
-                                                                        animi illum quo repellendus pariatur, enim
-                                                                        doloribus, </p>
-                                                                </div>
-                                                                <div class="resume-row">
-                                                                    <h6 class="resume-type">Specialization course</h6>
-                                                                    <p class="resume-study">University of studies,
-                                                                        Poland, Cracow</p>
-                                                                    <p class="resume-date text-primary">Jan 2004 - Dec
-                                                                        2006</p>
-                                                                    <p class="resume-text">Lorem ipsum dolor sit amet,
-                                                                        consectetur adipisicing elit. Minus nobis animi
-                                                                        assumenda sint recusandae! Dolor placeat debitis
-                                                                        animi illum quo repellendus pariatur, enim
-                                                                        doloribus</p>
-                                                                </div>
+                                                                <?php foreach ($resumes as $resume): ?>
+                                                                    <?php if ($resume['category'] === 'education'): ?>
+                                                                        <div class="resume-row">
+                                                                            <h6 class="resume-type"><?= htmlspecialchars($resume['course_or_position']) ?></h6>
+                                                                            <p class="resume-study"><?= htmlspecialchars($resume['institute_or_company']) ?></p>
+                                                                            <p class="resume-date text-primary"><?= htmlspecialchars($resume['duration_or_period']) ?></p>
+                                                                            <p class="resume-text"><?= htmlspecialchars($resume['description']) ?></p>
+                                                                        </div>
+                                                                    <?php endif; ?>
+                                                                <?php endforeach; ?>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -245,30 +251,16 @@ $base_url = $_ENV['BASE_URL'];
                                                         <h4 class="title-uppercase">Experience</h4>
                                                         <div class="resume-content">
                                                             <div class="resume-inner">
-                                                                <div class="resume-row">
-                                                                    <h6 class="resume-type">Webdesigner & Front-end</h6>
-                                                                    <p class="resume-study">University of studies,
-                                                                        Poland, Cracow</p>
-                                                                    <p class="resume-date text-primary">Jan 2004 - Dec
-                                                                        2006</p>
-                                                                    <p class="resume-text">Lorem ipsum dolor sit amet,
-                                                                        consectetur adipisicing elit. Minus nobis animi
-                                                                        assumenda sint recusandae! Dolor placeat debitis
-                                                                        animi illum quo repellendus pariatur, enim
-                                                                        doloribus, deleniti!</p>
-                                                                </div>
-                                                                <div class="resume-row">
-                                                                    <h6 class="resume-type">WordPress Developer</h6>
-                                                                    <p class="resume-study">University of studies,
-                                                                        Poland, Cracow</p>
-                                                                    <p class="resume-date text-primary">Jan 2004 - Dec
-                                                                        2006</p>
-                                                                    <p class="resume-text">Lorem ipsum dolor sit amet,
-                                                                        consectetur adipisicing elit. Minus nobis animi
-                                                                        assumenda sint recusandae! Dolor placeat debitis
-                                                                        animi illum quo repellendus pariatur, enim
-                                                                        doloribus, deleniti!!</p>
-                                                                </div>
+                                                                <?php foreach ($resumes as $resume): ?>
+                                                                    <?php if ($resume['category'] === 'experience'): ?>
+                                                                        <div class="resume-row">
+                                                                            <h6 class="resume-type"><?= htmlspecialchars($resume['course_or_position']) ?></h6>
+                                                                            <p class="resume-study"><?= htmlspecialchars($resume['institute_or_company']) ?></p>
+                                                                            <p class="resume-date text-primary"><?= htmlspecialchars($resume['duration_or_period']) ?></p>
+                                                                            <p class="resume-text"><?= htmlspecialchars($resume['description']) ?></p>
+                                                                        </div>
+                                                                    <?php endif; ?>
+                                                                <?php endforeach; ?>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -302,48 +294,15 @@ $base_url = $_ENV['BASE_URL'];
                                                 <div class="col-md-12">
                                                     <h2 class="title-uppercase text-white">LATEST PROJECTS</h2>
                                                     <div class="row-project-box row">
-                                                        <div class="col-project-box col-sm-6 col-md-4 col-lg-4">
-                                                            <a href="project-detail.html" class="project-box">
-                                                                <div class="project-box-inner">
-                                                                    <h5>Boranito<br>Skat</h5>
-                                                                    <div class="project-category">House Design</div>
-                                                                </div>
-                                                            </a>
-                                                        </div>
-                                                        <div class="col-project-box col-sm-6 col-md-4 col-lg-4">
-                                                            <a href="project-detail.html" class="project-box">
-                                                                <div class="project-box-inner">
-                                                                    <h5>White<br>Bottle</h5>
-                                                                    <div class="project-category">2018 / BRANDING</div>
-                                                                </div>
-                                                            </a>
-                                                        </div>
-                                                        <div class="col-project-box col-sm-6 col-md-4 col-lg-4">
-                                                            <a href="project-detail.html" class="project-box">
-                                                                <div class="project-box-inner">
-                                                                    <h5>ICO Bottle<br> Opener</h5>
-                                                                    <div class="project-category">2017 / INTERACTION
+                                                        <?php foreach ($projects as $project): ?>
+                                                            <div class="col-project-box col-sm-6 col-md-4 col-lg-4">
+                                                                <a href="<?= htmlspecialchars($project['project_link']) ?>" class="project-box">
+                                                                    <div class="project-box-inner">
+                                                                        <h5><?= htmlspecialchars($project['project_name']) ?></h5>
                                                                     </div>
-                                                                </div>
-                                                            </a>
-                                                        </div>
-                                                        <div class="col-project-box col-sm-6 col-md-4 col-lg-4">
-                                                            <a href="project-detail.html" class="project-box">
-                                                                <div class="project-box-inner">
-                                                                    <h5>Rennovate<br> Toilet</h5>
-                                                                    <div class="project-category">2018 / BRANDING</div>
-                                                                </div>
-                                                            </a>
-                                                        </div>
-                                                        <div class="col-project-box col-sm-6 col-md-4 col-lg-4">
-                                                            <a href="project-detail.html" class="project-box">
-                                                                <div class="project-box-inner">
-                                                                    <h5>Bauhaus<br> studio</h5>
-                                                                    <div class="project-category">2017 / INTERACTION
-                                                                    </div>
-                                                                </div>
-                                                            </a>
-                                                        </div>
+                                                                </a>
+                                                            </div>
+                                                        <?php endforeach; ?>
                                                     </div>
                                                     <a href="#" class="h5 link-arrow text-white">view all projects <i
                                                             class="icon icon-chevron-right"></i></a>
@@ -431,16 +390,14 @@ $base_url = $_ENV['BASE_URL'];
                                         <div class="intro overflow-hidden">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <h2 class="title-uppercase"><span class="text-primary">NEW
-                                                            YORK</span>,USA</h2>
-                                                    <h5 class="text-muted">166 Main Street, Beverly Hills, CA 90210</h5>
+                                                    <h2 class="title-uppercase"><span class="text-primary">Kemayoran</span>, Indonesia</h2>
+                                                    <h5 class="text-muted">Blok AC 6 NO 166 Main Street, Halo test, 90210</h5>
                                                     <section class="contact-address">
                                                         <h3><a class="mail"
                                                                 href="http://paul-themes.com/cdn-cgi/l/email-protection#41222e2f3520223501332e232433356f222e2c">
-                                                                <span class="__cf_email__"
-                                                                    data-cfemail="10737f7e6471736450627f727562643e737f7d">[email&#160;protected]</span></a>
+                                                                <span><?= $profile['email'] ?></span></a>
                                                         </h3>
-                                                        <h3><span class="phone">+96 56-85-1379</span></h3>
+                                                        <h3><span class="phone">+62 8785748232</span></h3>
                                                     </section>
                                                 </div>
                                                 <div class="col-md-6">
