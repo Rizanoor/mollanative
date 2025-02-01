@@ -1,11 +1,16 @@
 <?php
 require_once './controllers/AboutController.php';
+require_once './controllers/SkillController.php';
 
-$controller = new AboutController();
-$controller->handleRequest();
+$aboutController = new AboutController();
+$skillController = new SkillController();
 
-// Ambil data dari model
-$aboutData = $controller->getAboutData();
+$aboutController->handleRequest();
+$skillController->handleRequestSkill();
+
+$aboutData = $aboutController->getAboutData();
+$skills = $skillController->getSkills();
+
 
 $message = $_SESSION['message'] ?? '';
 $message_type = $_SESSION['message_type'] ?? '';
@@ -31,16 +36,16 @@ $message_type = $_SESSION['message_type'] ?? '';
     </div>
 
 
-    <form>
+    <form method="POST">
         <div class="row mb-3">
             <div class="col-md-4">
                 <label for="inputSkill" class="form-label">Skill Name</label>
-                <input type="text" class="form-control" id="inputSkill" placeholder="Enter skill name" required>
+                <input type="text" class="form-control" id="inputSkill" name="inputSkill" placeholder="Enter skill name" required>
             </div>
 
             <div class="col-md-4">
                 <label for="inputExperience" class="form-label">Skill Experience (%)</label>
-                <input type="number" class="form-control" id="inputExperience" placeholder="Enter skill experience" min="0" max="100" required>
+                <input type="number" class="form-control" id="inputExperience" name="inputExperience" placeholder="Enter skill experience" min="0" max="100" required>
             </div>
 
             <div class="col-md-4 d-flex align-items-end">
@@ -57,32 +62,32 @@ $message_type = $_SESSION['message_type'] ?? '';
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th style="width: 10px">#</th>
+                        <th>#</th>
                         <th>Skills</th>
                         <th>Skill Experience</th>
-                        <th style="width: 20%">Action</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="align-middle">
-                        <td>1.</td>
-                        <td>Update software</td>
-                        <td>
-                            <div class="progress progress-xs">
-                                <div
-                                    class="progress-bar progress-bar-danger"
-                                    style="width: 55%"></div>
-                            </div>
-                        </td>
-                        <td>
-                            <button class="btn btn-sm btn-primary">
-                                <i class="bi bi-pencil"></i> Edit
-                            </button>
-                            <button class="btn btn-sm btn-danger">
-                                <i class="bi bi-trash"></i> Delete
-                            </button>
-                        </td>
-                    </tr>
+                    <?php foreach ($skills as $index => $skill): ?>
+                        <tr class="align-middle">
+                            <td><?php echo $index + 1; ?>.</td>
+                            <td><?php echo htmlspecialchars($skill['skill_name']); ?></td>
+                            <td>
+                                <div class="progress progress-xs">
+                                    <div class="progress-bar progress-bar-danger" style="width: <?php echo $skill['experience']; ?>%"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <form method="POST">
+                                    <input type="hidden" name="delete_id" value="<?php echo $skill['id']; ?>" />
+                                    <button type="submit" class="btn btn-sm btn-danger">
+                                        <i class="bi bi-trash"></i> Delete
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>

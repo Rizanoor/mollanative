@@ -114,7 +114,8 @@ $profile = $profileController->getProfile($id);
                     <div class="row">
                         <div class="col-sm-6">
                             <h3 class="mb-0">
-                                <?php
+                                <?php 
+                                ob_start();
                                 if (isset($_GET['about'])) {
                                     echo "About";
                                 } elseif (isset($_GET['resume'])) {
