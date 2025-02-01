@@ -35,17 +35,17 @@ class ProfileModel
             WHERE user_id = ?";
 
         $stmt = $this->pdo->prepare($query);
-        $stmt->bindParam('ssssssssi', 
-            $data['name'], 
-            $data['instagram'], 
-            $data['facebook'], 
-            $data['linkedin'], 
-            $data['github'], 
-            $data['phone'], 
-            $data['address'], 
+        $stmt->execute([
+            $data['name'],
+            $data['instagram'],
+            $data['facebook'],
+            $data['linkedin'],
+            $data['github'],
+            $data['phone'],
+            $data['address'],
             $data['email'],
             $id
-        );
+        ]);
 
         return $stmt->execute();
     }
@@ -55,7 +55,7 @@ class ProfileModel
     {
         $query = "UPDATE profiles SET hero_photo = ? WHERE user_id = ?";
         $stmt = $this->pdo->prepare($query);
-        $stmt->bindParam('si', $photoPath, $id);
+        $stmt->execute([$photoPath, $id]);
 
         return $stmt->execute();
     }

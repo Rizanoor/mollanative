@@ -20,6 +20,7 @@ $id = $_SESSION['user_id'];
 $profileController = new ProfileController();
 $profile = $profileController->getProfile($id);
 
+
 ?>
 
 
@@ -146,20 +147,37 @@ $profile = $profileController->getProfile($id);
                         } else {
                         ?>
                             <div class="col-lg-12">
+                                <?php
+                                if (isset($_SESSION['message'])) {
+                                    $message = $_SESSION['message'];
+                                    $message_type = $_SESSION['message_type'];
+                                    echo "<div class='alert alert-$message_type'>$message</div>";
+
+                                    // Hapus pesan setelah ditampilkan
+                                    unset($_SESSION['message']);
+                                    unset($_SESSION['message_type']);
+                                }
+                                ?>
+
                                 <div class="card card-primary card-outline mb-4">
                                     <form class="needs-validation" action="../admin/controllers/UpdateProfileController.php" method="POST" enctype="multipart/form-data">
                                         <div class="card-body">
                                             <div class="row g-3">
                                                 <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($profile['user_id'] ?? ''); ?>">
-
                                                 <div class="col-md-12">
-                                                    <label for="hero_photo" class="form-label">Hero Photo</label>
-                                                    <input type="file" name="hero_photo" class="form-control">
+                                                    <?php if (!empty($profile['hero_photo'])): ?>
+                                                        <div id="hero_photo_preview" style="margin-top: 10px;">
+                                                            <img id="hero_photo_image" src="../admin/uploads/<?= $profile['hero_photo']; ?>" alt="Hero Photo Preview" style="max-width: 10%; height: auto; border-radius: 8px;">
+                                                        </div>
+                                                    <?php endif; ?>
+                                                    <label for="hero_photo" class="form-label mt-3">Hero Photo</label>
+                                                    <input type="file" name="hero_photo" class="form-control" id="hero_photo_input">
                                                     <small>Photo (Minimum 1920 X 1280, Maxsize 2mb)</small>
                                                 </div>
+
                                                 <div class="col-md-6">
                                                     <label for="name" class="form-label">Nama</label>
-                                                    <input type="text" class="form-control" name="name" placeholder="Masukkan Nama Lengkap" value="<?php echo htmlspecialchars($profile['name'] ?? ''); ?>" required>
+                                                    <input type="text" class="form-control" name="name" placeholder="Masukkan Nama Lengkap" value="<?php echo htmlspecialchars($profile['name'] ?? ''); ?>">
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label for="instagram" class="form-label">Instagram</label>
