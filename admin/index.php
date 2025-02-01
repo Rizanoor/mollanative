@@ -1,7 +1,10 @@
 <?php
+require_once './controllers/ProfileController.php';
+
 session_start();
 
 $base_url = "http://localhost:8888/mollanative";
+
 
 if (isset($_GET['logout']) && $_GET['logout'] === 'true') {
     session_destroy();
@@ -12,7 +15,13 @@ if (isset($_GET['logout']) && $_GET['logout'] === 'true') {
 if (!isset($_SESSION['user_name'])) {
     header('location:login/');
 }
+
+$id = $_SESSION['user_id'];
+$profileController = new ProfileController();
+$profile = $profileController->getProfile($id);
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -138,45 +147,47 @@ if (!isset($_SESSION['user_name'])) {
                         ?>
                             <div class="col-lg-12">
                                 <div class="card card-primary card-outline mb-4">
-                                    <form class="needs-validation" novalidate>
+                                    <form class="needs-validation" action="../admin/controllers/UpdateProfileController.php" method="POST" enctype="multipart/form-data">
                                         <div class="card-body">
                                             <div class="row g-3">
+                                                <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($profile['user_id'] ?? ''); ?>">
+
                                                 <div class="col-md-12">
                                                     <label for="hero_photo" class="form-label">Hero Photo</label>
                                                     <input type="file" name="hero_photo" class="form-control">
                                                     <small>Photo (Minimum 1920 X 1280, Maxsize 2mb)</small>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <label for="name" class="form-label">Name</label>
-                                                    <input type="text" class="form-control" name="name" placeholder="Enter Full  Name">
+                                                    <label for="name" class="form-label">Nama</label>
+                                                    <input type="text" class="form-control" name="name" placeholder="Masukkan Nama Lengkap" value="<?php echo htmlspecialchars($profile['name'] ?? ''); ?>" required>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label for="instagram" class="form-label">Instagram</label>
-                                                    <input type="text" class="form-control" name="instagram" placeholder="Enter Instagram">
+                                                    <input type="text" class="form-control" name="instagram" placeholder="Masukkan Instagram" value="<?php echo htmlspecialchars($profile['instagram'] ?? ''); ?>">
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label for="facebook" class="form-label">Facebook</label>
-                                                    <input type="text" class="form-control" name="facebook" placeholder="Enter Facebook">
+                                                    <input type="text" class="form-control" name="facebook" placeholder="Masukkan Facebook" value="<?php echo htmlspecialchars($profile['facebook'] ?? ''); ?>">
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label for="linkedin" class="form-label">Linkedin</label>
-                                                    <input type="text" class="form-control" name="linkedin" placeholder="Enter Linkedin">
+                                                    <input type="text" class="form-control" name="linkedin" placeholder="Masukkan Linkedin" value="<?php echo htmlspecialchars($profile['linkedin'] ?? ''); ?>">
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label for="github" class="form-label">Github</label>
-                                                    <input type="text" class="form-control" name="github" placeholder="Enter Github">
+                                                    <input type="text" class="form-control" name="github" placeholder="Masukkan Github" value="<?php echo htmlspecialchars($profile['github'] ?? ''); ?>">
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <label for="phone" class="form-label">Phone</label>
-                                                    <input type="tel" class="form-control" name="Phone" placeholder="Enter Phone">
+                                                    <label for="phone" class="form-label">Telepon</label>
+                                                    <input type="tel" class="form-control" name="phone" placeholder="Masukkan Telepon" value="<?php echo htmlspecialchars($profile['phone'] ?? ''); ?>">
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <label for="address" class="form-label">Address</label>
-                                                    <textarea name="address" id="address" class="form-control"></textarea>
+                                                    <label for="address" class="form-label">Alamat</label>
+                                                    <textarea name="address" id="address" class="form-control"><?php echo htmlspecialchars($profile['address'] ?? ''); ?></textarea>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <label for="email" class="form-label">email</label>
-                                                    <input type="email" class="form-control" name="email" placeholder="Enter Email">
+                                                    <label for="email" class="form-label">Email</label>
+                                                    <input type="email" class="form-control" name="email" placeholder="Masukkan Email" value="<?php echo htmlspecialchars($profile['email'] ?? ''); ?>" required>
                                                 </div>
                                             </div>
                                             <button class="btn btn-primary mt-3" type="submit">Submit</button>
