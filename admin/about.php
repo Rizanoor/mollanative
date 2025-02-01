@@ -1,15 +1,35 @@
+<?php
+require_once './controllers/AboutController.php';
+
+$controller = new AboutController();
+$controller->handleRequest();
+
+// Ambil data dari model
+$aboutData = $controller->getAboutData();
+
+$message = $_SESSION['message'] ?? '';
+$message_type = $_SESSION['message_type'] ?? '';
+?>
+
 <div class="col-lg-12">
+    <?php if (!empty($message)): ?>
+        <div class="alert alert-<?php echo htmlspecialchars($message_type); ?> alert-dismissible fade show" role="alert">
+            <?php echo htmlspecialchars($message); ?>
+        </div>
+    <?php endif; ?>
+
     <div class="card card-primary card-outline mb-4">
-        <form>
+        <form action="" method="POST">
             <div class="card-body">
                 <div class="mb-3">
                     <label for="aboutdesc" class="form-label">About Description</label>
-                    <textarea class="form-control" name="aboutdesc" id=""></textarea>
+                    <textarea class="form-control" name="aboutdesc" id="aboutdesc"><?php echo htmlspecialchars($aboutData['description']); ?></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </form>
     </div>
+
 
     <form>
         <div class="row mb-3">
@@ -28,7 +48,6 @@
             </div>
         </div>
     </form>
-
 
     <div class="card mb-4">
         <div class="card-header justify-content-between align-items-center d-flex">
@@ -66,34 +85,6 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
-    </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="addSkillModal" tabindex="-1" aria-labelledby="addSkillModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="addSkillModalLabel">Add Skill</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="addSkillForm">
-                    <div class="mb-3">
-                        <label for="skillName" class="form-label">Skill Name</label>
-                        <input type="text" class="form-control" id="skillName" name="skillName" placeholder="Enter skill name" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="skillExperience" class="form-label">Skill Experience (%)</label>
-                        <input type="number" class="form-control" id="skillExperience" name="skillExperience" placeholder="Enter skill experience percentage" min="0" max="100" required>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" form="addSkillForm">Save</button>
-            </div>
         </div>
     </div>
 </div>
