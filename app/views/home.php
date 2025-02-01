@@ -112,7 +112,7 @@ $projects = $projectController->getProjects();
             </button>
             <div class="contacts d-none d-md-block">
                 <div class="contact-item">
-                    +62 8785748232
+                    +62 <?= $profile['phone'] ?>
                 </div>
                 <div class="contact-item spacer">
                     /
@@ -124,11 +124,10 @@ $projects = $projectController->getProjects();
         </header>
         <div class="copy-bottom white boxed">© <?= $profile['name'] ?> <?= date('Y') ?>.</div>
         <div class="social-list social-list-bottom boxed">
-            <a href="#" class="icon ion-social-twitter"></a>
-            <a href="#" class="icon ion-social-facebook"></a>
-            <a href="#" class="icon ion-social-googleplus"></a>
-            <a href="#" class="icon ion-social-linkedin"></a>
-            <a href="#" class="icon ion-social-dribbble-outline"></a>
+            <a href="<?= $profile['facebook'] ?>" class="icon ion-social-facebook"></a>
+            <a href="<?= $profile['github'] ?>" class="icon ion-social-github"></a>
+            <a href="<?= $profile['linkedin'] ?>" class="icon ion-social-linkedin"></a>
+            <a href="<?= $profile['instagram'] ?>" class="icon ion-social-instagram"></a>
         </div>
 
         <div class="pagepiling">
@@ -389,13 +388,13 @@ $projects = $projectController->getProjects();
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <h2 class="title-uppercase"><span class="text-primary">Kemayoran</span>, Indonesia</h2>
-                                                    <h5 class="text-muted">Blok AC 6 NO 166 Main Street, Halo test, 90210</h5>
+                                                    <h5 class="text-muted"><?= $profile['address'] ?></h5>
                                                     <section class="contact-address">
                                                         <h3><a class="mail"
                                                                 href="http://paul-themes.com/cdn-cgi/l/email-protection#41222e2f3520223501332e232433356f222e2c">
                                                                 <span><?= $profile['email'] ?></span></a>
                                                         </h3>
-                                                        <h3><span class="phone">+62 8785748232</span></h3>
+                                                        <h3><span class="phone">+62<?= $profile['phone'] ?></span></h3>
                                                     </section>
                                                 </div>
                                                 <div class="col-md-6">
