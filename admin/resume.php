@@ -1,12 +1,30 @@
+<?php
+
+require_once './controllers/ResumeController.php';
+
+$resumeController = new ResumeController();
+$resumeController->handleRequest();
+$resumes = $resumeController->getResumes();
+
+$message = $_SESSION['message'] ?? '';
+$message_type = $_SESSION['message_type'] ?? '';
+?>
+
 <div class="col-lg-12">
+    <?php if (isset($_SESSION['message'])): ?>
+        <div class="alert alert-<?= $_SESSION['message_type']; ?> alert-dismissible fade show" role="alert">
+            <?= $_SESSION['message']; ?>
+        </div>
+        <?php unset($_SESSION['message']); ?>
+    <?php endif; ?>
 
     <div class="card card-primary card-outline mb-4">
-        <form class="needs-validation" novalidate>
+        <form method="POST">
             <div class="card-body">
                 <div class="row g-3">
                     <div class="col-md-4">
                         <label for="category" class="form-label">Category</label>
-                        <select class="form-select" id="category" required>
+                        <select class="form-select" id="category" name="category" required>
                             <option>Choose...</option>
                             <option value="education">Education</option>
                             <option value="experience">Experience</option>
@@ -34,7 +52,6 @@
         </form>
     </div>
 
-
     <div class="card mb-4">
         <div class="card-header justify-content-between align-items-center d-flex">
             <h3 class="card-title">Manage Resume</h3>
@@ -44,31 +61,32 @@
                 <thead>
                     <tr>
                         <th style="width: 10px">#</th>
-                        <th>Skills</th>
-                        <th>Skill Experience</th>
+                        <th>Category</th>
+                        <th>Institute or Company Name</th>
+                        <th>Course or Position</th>
+                        <th>Duration</th>
                         <th style="width: 20%">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="align-middle">
-                        <td>1.</td>
-                        <td>Update software</td>
-                        <td>
-                            <div class="progress progress-xs">
-                                <div
-                                    class="progress-bar progress-bar-danger"
-                                    style="width: 55%"></div>
-                            </div>
-                        </td>
-                        <td>
-                            <button class="btn btn-sm btn-primary">
-                                <i class="bi bi-pencil"></i> Edit
-                            </button>
-                            <button class="btn btn-sm btn-danger">
-                                <i class="bi bi-trash"></i> Delete
-                            </button>
-                        </td>
-                    </tr>
+                    <?php foreach ($resumes as $index => $resume): ?>
+
+                        <tr class="align-middle">
+                            <td><?= $index + 1 ?></td>
+                            <td><?= $resume['category'] ?></td>
+                            <td><?= $resume['institute_or_company'] ?></td>
+                            <td><?= $resume['course_or_position'] ?></td>
+                            <td><?= $resume['duration_or_period'] ?></td>
+                            <td>
+                                <form method="POST">
+                                    <input type="hidden" name="delete_id" value="<?php echo $resume['id']; ?>" />
+                                    <button type="submit" class="btn btn-sm btn-danger">
+                                        <i class="bi bi-trash"></i> Delete
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
